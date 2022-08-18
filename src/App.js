@@ -1,35 +1,26 @@
-import "./App.css";
-import Directory from "./components/directory/directory.component.jsx";
-
-const App = () => {
-  const categories = [
-    {
-      id: 1,
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    },
-    {
-      id: 2,
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    },
-  ];
-  return <Directory categories={categories} />;
+import Home from "./components/routes/home/home.component";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/routes/navigation/naviagation.component";
+import Authentication from "./components/routes/authentication/authentication";
+const Shop = () => {
+  return (
+    <div>
+      <h1>Shop Page</h1>
+    </div>
+  );
 };
-
+const App = () => {
+  return (
+    //to reigster these route level components
+    <Routes>
+      {/* when the route is "/", render the <Navigation/> componment*/}
+      <Route path="/" element={<Navigation />}>
+        {/*index = {true}, so that <Home/> will be render when the route "/" */}
+        <Route index element={<Home />} />;
+        <Route path="/shop" element={<Shop />} />;
+        <Route path="/auth" element={<Authentication />} />
+      </Route>
+    </Routes>
+  );
+};
 export default App;
