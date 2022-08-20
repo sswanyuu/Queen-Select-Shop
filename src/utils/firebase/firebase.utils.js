@@ -43,6 +43,7 @@ googleProvider.setCustomParameters({
 });
 //the authentication that communte with the firebase
 //the same one for every application
+//keep track the auth even when refreshing the website
 export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
@@ -77,7 +78,7 @@ export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
     }
     return userDocRef;
   }
-  console.log(userSnapshot.exits());
+  console.log(userSnapshot.exists());
 };
 //put all the function from using external API (database) in one place
 //if there is any change, it's easier to organize
@@ -91,5 +92,5 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 export const signOutUser = async () => await signOut(auth);
 export const onAuthStateChangedListener = (callback) =>
-  //open listener:whenever the state change, callback function run
+  //open listener:whenever the auth state change, callback function run
   onAuthStateChanged(auth, callback);

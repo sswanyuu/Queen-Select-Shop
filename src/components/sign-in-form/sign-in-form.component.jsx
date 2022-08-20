@@ -1,8 +1,7 @@
 import FormInput from "../form-input/form-input.component";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./sign-in-form.styles.scss";
 import Button from "../button/button.component";
-import { UserContext } from "../../contexts/users.context";
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
@@ -13,22 +12,21 @@ const defaultFormFields = {
   //not store these info inside our database
   password: "",
 };
-const signInWithGoogle = async () => {
-  const response = await signInWithGooglePopup();
-  console.log(response);
-  // destructuring
-  createUserDocumentFromAuth(response.user);
-};
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   //destructuring
   const { email, password } = formFields;
   console.log(formFields);
-  const { setCurrentUser } = useContext(UserContext);
+
   //to clean up the form after submitting
   const resetFormField = () => {
     setFormFields(defaultFormFields);
+  };
+  const signInWithGoogle = async () => {
+    const response = await signInWithGooglePopup();
+    // // let the useContext do it!
+    //     createUserDocumentFromAuth(response.user);
   };
   const handleSubmit = async (event) => {
     //prevent reload the page
@@ -41,7 +39,6 @@ const SignInForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
       resetFormField();
     } catch (error) {
       console.log(error);
