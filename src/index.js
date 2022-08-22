@@ -2,17 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
-import { UserProvider } from "./contexts/users.context";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-
+import { UserProvider } from "./contexts/users.context";
+import { ProductsProvider } from "./contexts/products.context";
+import { CartItemProvider } from "./contexts/cart-items.context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/*wrap <App/> with BrowserRouter to  read URL and track navigation*/}
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <CartItemProvider>
+            <App />
+          </CartItemProvider>
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
