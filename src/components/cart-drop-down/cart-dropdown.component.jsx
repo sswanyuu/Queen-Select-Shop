@@ -4,14 +4,8 @@ import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 import { useContext } from "react";
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartItemContext);
-  const cost = cartItems
-    .map((item) => {
-      return item.quantity * item.price;
-    })
-    .reduce((partialSum, a) => {
-      return partialSum + a;
-    }, 0);
+  const { cartItems, total } = useContext(CartItemContext);
+
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">
@@ -20,7 +14,7 @@ const CartDropdown = () => {
         })}
       </div>
       <hr></hr>
-      <span className="total">total : ${cost}</span>
+      <span className="total">Total : ${total}</span>
       <Button buttonType="inverted" children="Check out" />
     </div>
   );
