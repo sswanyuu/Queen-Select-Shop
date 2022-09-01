@@ -5,8 +5,12 @@ import { CartItemContext } from "../../contexts/cart-items.context";
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
   const { addItemToCart } = useContext(CartItemContext);
+  const { setIsCartOpen } = useContext(CartItemContext);
 
-  const addProductToCart = () => addItemToCart(product);
+  const addProductToCart = () => {
+    addItemToCart(product);
+    setIsCartOpen(true);
+  };
 
   return (
     <div className="product-card-container">

@@ -1,7 +1,7 @@
 import { useEffect, createContext, useState } from "react";
 //import SHOP_DATA from "../components/routes/shop/shop-data.js";
 import {
-  addCollectionAndDocuments,
+  //addCollectionAndDocuments,
   getCategoriesAndDocuments,
 } from "../utils/firebase/firebase.utils.js";
 export const CategoriesContext = createContext({
@@ -23,7 +23,7 @@ export const CategoriesProvider = ({ children }) => {
       setCategoriesMap(categoryMap);
     };
     getCategoriesMap();
-  });
+  }, []);
   return (
     <CategoriesContext.Provider value={value}>
       {children}

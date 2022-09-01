@@ -12,7 +12,7 @@ const App = () => {
       <Route path="/" element={<Navigation />}>
         {/*index = {true}, so that <Home/> will be render when the route "/" */}
         <Route index element={<Home />} />;
-        <Route path="shop" element={<Shop />} />;
+        <Route path="shop/*" element={<Shop />} />;
         <Route path="auth" element={<Authentication />} />
         <Route path="checkout" element={<Checkout />} />
       </Route>
