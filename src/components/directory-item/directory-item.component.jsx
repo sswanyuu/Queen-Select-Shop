@@ -1,26 +1,26 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import "./directory-item.styles.scss";
+import { useNavigate } from "react-router-dom";
+import {
+  DirectoryItemContainer,
+  BackgroundImage,
+  Body,
+} from "./directory-item.styles";
 const DirectoryItem = ({ category }) => {
   // destructuring the categories*/
-  const { title, imageUrl } = category;
+  const { title, imageUrl, route } = category;
+  const navigate = useNavigate();
+  const navigateHandler = () => {
+    navigate(route);
+  };
   return (
-    <div className="directory-item-container">
+    <DirectoryItemContainer onClick={navigateHandler}>
       {/* style take an object */}
-      <div
-        className="background-image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      />
-
-      <div className="body">
-        <Fragment>
-          <Link to={`/shop/${title}`}>
-            <h2>{title}</h2>
-            <p>Shop now</p>
-          </Link>
-        </Fragment>
-      </div>
-    </div>
+      <BackgroundImage imageUrl={imageUrl} />
+      <Body>
+        <h2>{title}</h2>
+        <p>Shop now</p>
+      </Body>
+    </DirectoryItemContainer>
   );
 };
 export default DirectoryItem;

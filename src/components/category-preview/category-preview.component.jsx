@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
-import "./category-preview.styles.scss";
+import {
+  CategoryPreviewContainer,
+  Title,
+  Preview,
+} from "./category-preview.styles";
 import ProductCard from "../product-card/product-card.component";
 const CategoryPreview = ({ title, products }) => {
   return (
-    <div className="category-preview-container">
+    <CategoryPreviewContainer>
       {/* just want the text to be clickable */}
       <h2>
-        <span className="title">
-          <Link className="nav-link" to={`/shop/${title}`}>
-            {title.toLowerCase()}
-          </Link>
-        </span>
+        <Title>
+          <Link to={`/shop/${title}`}>{title.toLowerCase()}</Link>
+        </Title>
       </h2>
-      <div className="preview">
+      <Preview>
         {products
           .filter((_, index) => {
             return index < 4;
@@ -20,8 +22,8 @@ const CategoryPreview = ({ title, products }) => {
           .map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
-      </div>
-    </div>
+      </Preview>
+    </CategoryPreviewContainer>
   );
 };
 

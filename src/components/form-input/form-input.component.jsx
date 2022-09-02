@@ -1,21 +1,19 @@
-import "./form-input.styles.scss";
+import { Input, Group, FormInputLabel } from "./form-input.styles";
 //props -> destructuring
 const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className="group">
-      <input className="form-input" {...otherProps} />
+    <Group>
+      <Input className="form-input" {...otherProps} />
       {/*  only render it when lebel exist */}
       {label && (
-        <label
-          //if no value, apply the classname
-          className={`${
-            otherProps.value.length ? "shrink" : null
-          } form-input-label`}
+        <FormInputLabel
+          //if no value, shrink = false
+          shrink={otherProps.value.length}
         >
           {label}
-        </label>
+        </FormInputLabel>
       )}
-    </div>
+    </Group>
   );
 };
 export default FormInput;

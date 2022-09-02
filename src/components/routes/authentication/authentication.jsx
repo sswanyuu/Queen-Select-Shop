@@ -1,6 +1,6 @@
 //import { useEffect } from "react";
 //import { getRedirectResult } from "firebase/auth";
-import "./authentication.styles.scss";
+import { AuthenticationContainer } from "./authentication.styles";
 import SignInForm from "../../sign-in-form/sign-in-form.component";
 import SignUpForm from "../../sign-up-form/sign-up-form.component";
 const Authentication = () => {
@@ -21,10 +21,10 @@ const Authentication = () => {
   //   when make a call to a database -> asynchronous function
 
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   );
 };
 export default Authentication;
