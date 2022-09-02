@@ -92,7 +92,7 @@ export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
   //database/collection name/identifier
   //uid is the unique id of google account
   const userDocRef = doc(db, "users", uid);
-  console.log(userDocRef);
+  // console.log(userDocRef);
   const userSnapshot = await getDoc(userDocRef);
   //check if the doc exit
   //if the doc doesn't exist, build a new doc

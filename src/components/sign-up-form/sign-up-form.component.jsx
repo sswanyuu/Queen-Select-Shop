@@ -18,7 +18,7 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   //destructuring
   const { displayName, email, password, confirmPassword } = formFields;
-  console.log(formFields);
+  // console.log(formFields);
   //to clean up the form after submitting
   const resetFormField = () => {
     setFormFields(defaultFormFields);

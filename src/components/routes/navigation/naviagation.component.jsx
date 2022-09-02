@@ -2,7 +2,7 @@
 import { Fragment, useContext } from "react";
 //Outlet decide where to put the child route component
 //Link is for connect to another router (just like anchor)
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../../../assets/crown.svg";
 import { UserContext } from "../../../contexts/users.context";
 import { CartItemContext } from "../../../contexts/cart-items.context";
@@ -18,7 +18,7 @@ import {
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartItemContext);
-  console.log(currentUser);
+  // console.log(currentUser);
   return (
     <Fragment>
       <NavigationContainer>

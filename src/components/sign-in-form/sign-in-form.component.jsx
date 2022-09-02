@@ -5,7 +5,7 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
+  // createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 const defaultFormFields = {
   email: "",
@@ -17,7 +17,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   //destructuring
   const { email, password } = formFields;
-  console.log(formFields);
+  // console.log(formFields);
 
   //to clean up the form after submitting
   const resetFormField = () => {
@@ -48,7 +48,7 @@ const SignInForm = () => {
           break;
         case "auth/user-not-found":
           alert("No user associated with this email");
-
+          break;
         default:
           console.log(error);
       }
