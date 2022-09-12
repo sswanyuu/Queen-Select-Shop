@@ -4,22 +4,21 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./contexts/users.context";
-import { CategoriesProvider } from "./contexts/categories.context";
 import { CartItemProvider } from "./contexts/cart-items.context";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/*wrap <App/> with BrowserRouter to  read URL and track navigation*/}
-    <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider>
-          <CartItemProvider>
-            <App />
-          </CartItemProvider>
-        </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+    {/* wrap all of the app with Provider by redox and add store */}
+    <Provider store={store}>
+      {/*wrap <App/> with BrowserRouter to  read URL and track navigation*/}
+      <BrowserRouter>
+        <CartItemProvider>
+          <App />
+        </CartItemProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
