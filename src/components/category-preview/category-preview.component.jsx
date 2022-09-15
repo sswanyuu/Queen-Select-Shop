@@ -8,7 +8,6 @@ import ProductCard from "../product-card/product-card.component";
 const CategoryPreview = ({ title, products }) => {
   return (
     <CategoryPreviewContainer>
-      {/* just want the text to be clickable */}
       <h2>
         <Title>
           <Link to={`/shop/${title}`}>{title.toLowerCase()}</Link>

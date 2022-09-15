@@ -4,19 +4,15 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { CartItemProvider } from "./contexts/cart-items.context";
+
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* wrap all of the app with Provider by redox and add store */}
     <Provider store={store}>
-      {/*wrap <App/> with BrowserRouter to  read URL and track navigation*/}
       <BrowserRouter>
-        <CartItemProvider>
-          <App />
-        </CartItemProvider>
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

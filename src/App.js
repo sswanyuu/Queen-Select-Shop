@@ -14,6 +14,7 @@ import { setCurrentUser } from "./store/user/user.action";
 const App = () => {
   //always the same reference
   const dispatch = useDispatch();
+
   useEffect(() => {
     //stop listening
     const unsuscribe = onAuthStateChangedListener((user) => {

@@ -25,8 +25,6 @@ const SignInForm = () => {
   };
   const signInWithGoogle = async () => {
     const response = await signInWithGooglePopup();
-    // // let the useContext do it!
-    //     createUserDocumentFromAuth(response.user);
   };
   const handleSubmit = async (event) => {
     //prevent reload the page

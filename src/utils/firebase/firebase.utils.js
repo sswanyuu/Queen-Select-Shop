@@ -77,13 +77,7 @@ export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    //.data() to get the data of it
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 //the additionalInfo is an object
 export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
@@ -112,7 +106,7 @@ export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
     }
     return userDocRef;
   }
-  console.log(userSnapshot.exists());
+  // console.log(userSnapshot.exists());
 };
 //put all the function from using external API (database) in one place
 //if there is any change, it's easier to organize

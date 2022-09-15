@@ -4,6 +4,7 @@ import { selectCategoriesMap } from "../../../store/categories/category.selector
 import { useSelector } from "react-redux";
 const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
+  console.log(categoriesMap);
   return (
     <Fragment>
       {/* give back an array of key value of each item */}

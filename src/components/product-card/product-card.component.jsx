@@ -5,16 +5,20 @@ import {
   ProductCardContainer,
 } from "./product-card.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { useContext } from "react";
-import { CartItemContext } from "../../contexts/cart-items.context";
-const ProductCard = ({ product }) => {
-  const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartItemContext);
-  const { setIsCartOpen } = useContext(CartItemContext);
 
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemToCart, setIsCartOpen } from "../../store/cart/cart.action";
+
+const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const { name, price, imageUrl } = product;
+  const cartItems = useSelector(selectCartItems);
   const addProductToCart = () => {
-    addItemToCart(product);
-    setIsCartOpen(true);
+    dispatch(addItemToCart(cartItems, product));
+    dispatch(setIsCartOpen(true));
   };
 
   return (
