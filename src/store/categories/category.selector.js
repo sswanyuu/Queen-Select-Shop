@@ -6,24 +6,20 @@ const selectCategoryReducer = (state) => state.categories;
 export const selectCategories = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => {
-    console.log(
-      "🚀 ~ file: category.selector.js ~ line 9 ~ categoriesSlice",
-      categoriesSlice
-    );
     return categoriesSlice.categories;
   }
 );
 export const selectCategoriesMap = createSelector(
   [selectCategories],
   (categories) => {
-    console.log(
-      "🚀 ~ file: category.selector.js ~ line 13 ~ categories",
-      categories
-    );
     return categories.reduce((acc, category) => {
       const { title, items } = category;
       acc[title.toLowerCase()] = items;
       return acc;
     }, {});
   }
+);
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
 );
