@@ -3,7 +3,8 @@ import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { rootReducer } from "./root-reducer";
 import logger from "redux-logger";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "./root-saga";
 //maybe there will be many middleware, put them into an array
 
 const persistConfig = {
@@ -12,10 +13,12 @@ const persistConfig = {
   whitelist: ["cart"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const sagaMiddleware = createSagaMiddleware();
 //only apply this middlewares when developing
 const middlewares = [
   process.env.NODE_ENV !== "production" && logger,
-  thunk,
+  sagaMiddleware,
 ].filter(Boolean);
 
 //the middle catch actions before they hit the reducers and log the states out
@@ -32,4 +35,6 @@ export const store = createStore(
   undefined,
   composedEnhancers
 );
+
+sagaMiddleware.run(rootSaga);
 export const persistor = persistStore(store);
