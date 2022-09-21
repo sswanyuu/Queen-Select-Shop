@@ -83,11 +83,13 @@ export const getCategoriesAndDocuments = async () => {
 export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
   if (!userAuth) return;
   const { displayName, email, uid } = userAuth;
+  console.log(userAuth);
   //database/collection name/identifier
   //uid is the unique id of google account
   const userDocRef = doc(db, "users", uid);
   // console.log(userDocRef);
   const userSnapshot = await getDoc(userDocRef);
+  console.log(userSnapshot);
   //check if the doc exit
   //if the doc doesn't exist, build a new doc
   if (!userSnapshot.exists()) {
@@ -104,8 +106,8 @@ export const createUserDocumentFromAuth = async (userAuth, addittonInfo) => {
     } catch (error) {
       console.log("error: Creating the user", error.message);
     }
-    return userDocRef;
   }
+  return userSnapshot;
   // console.log(userSnapshot.exists());
 };
 //put all the function from using external API (database) in one place
@@ -122,3 +124,16 @@ export const signOutUser = async () => await signOut(auth);
 export const onAuthStateChangedListener = (callback) =>
   //open listener:whenever the auth state change, callback function run
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};

@@ -4,9 +4,8 @@ import { Fragment } from "react";
 //Link is for connect to another router (just like anchor)
 import { Outlet } from "react-router-dom";
 //useSelector: to extract data out the reducer
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ReactComponent as Logo } from "../../../assets/crown.svg";
-import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropdown from "../../cart-drop-down/cart-dropdown.component";
 import {
@@ -17,7 +16,10 @@ import {
 } from "./navigation.styles";
 import { selectCurrentUser } from "../../../store/user/user.selector";
 import { selectIsCartOpen } from "../../../store/cart/cart.selector";
+import { signOutStart } from "../../../store/user/user.action";
 const Navigation = () => {
+  const dispatch = useDispatch();
+  const signOutUser = () => dispatch(signOutStart());
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
   // console.log(currentUser);
