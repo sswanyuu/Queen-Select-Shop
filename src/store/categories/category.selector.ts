@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
-//reselect can save the elder value of the data in the reducer if there is no changes
-//the concept is about memorize the values
-const selectCategoryReducer = (state) => state.categories;
+import { CategoriesState } from "./category.reducer";
+import { CategoryMap } from "./category.types";
+const selectCategoryReducer = (state): CategoriesState => state.categories;
 //input/ouput
 export const selectCategories = createSelector(
   [selectCategoryReducer],
@@ -11,12 +11,12 @@ export const selectCategories = createSelector(
 );
 export const selectCategoriesMap = createSelector(
   [selectCategories],
-  (categories) => {
+  (categories): CategoryMap => {
     return categories.reduce((acc, category) => {
       const { title, items } = category;
       acc[title.toLowerCase()] = items;
       return acc;
-    }, {});
+    }, {} as CategoryMap);
   }
 );
 export const selectCategoriesIsLoading = createSelector(
