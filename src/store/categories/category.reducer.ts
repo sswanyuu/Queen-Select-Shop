@@ -5,6 +5,7 @@ import {
   fetchCategoriesFailed,
 } from "./category.action";
 import { AnyAction } from "redux";
+
 export type CategoriesState = {
   readonly categories: Category[];
   readonly isLoading: boolean;
@@ -20,8 +21,8 @@ export const CATEGORIES_INTIAL_STATE: CategoriesState = {
 
 export const categoriesReducer = (
   state = CATEGORIES_INTIAL_STATE,
-  //action can be anyType
-  action = {} as AnyAction
+  //action can be anyAction
+  action: AnyAction
 ): CategoriesState => {
   if (fetchCategoriesStart.match(action)) {
     return { ...state, isLoading: true };
