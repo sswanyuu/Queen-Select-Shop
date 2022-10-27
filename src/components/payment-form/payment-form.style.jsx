@@ -8,7 +8,7 @@ export const PaymentFormContainer = styled.div`
   margin: 10px;
   padding: 10px 10px;
 `;
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   margin: 10px;
   padding: 10px 10px;
   display: flex;
