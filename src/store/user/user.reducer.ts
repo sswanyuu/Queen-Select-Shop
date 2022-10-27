@@ -31,7 +31,7 @@ export const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
     signOutFailed.match(action) ||
     signUpFailed.match(action)
   ) {
-    return { ...state, error: action.payload };
+    return { ...state, errorState: action.payload };
   }
 
   //action pass every reducer, so if nothing change, pass the previous state

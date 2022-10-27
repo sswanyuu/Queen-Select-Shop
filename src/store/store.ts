@@ -1,13 +1,21 @@
 import storage from "redux-persist/lib/storage";
-import { compose, createStore, applyMiddleware } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { compose, createStore, applyMiddleware, Middleware } from "redux";
+import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import { rootReducer } from "./root-reducer";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./root-saga";
 //maybe there will be many middleware, put them into an array
-
-const persistConfig = {
+export type RootState = ReturnType<typeof rootReducer>;
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+type ExtendsPersistConfig = PersistConfig<RootState> & {
+  whitelist: (keyof RootState)[];
+};
+const persistConfig: ExtendsPersistConfig = {
   key: "root",
   storage: storage,
   whitelist: ["cart"],
@@ -19,7 +27,7 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [
   process.env.NODE_ENV !== "production" && logger,
   sagaMiddleware,
-].filter(Boolean);
+].filter((middleware): middleware is Middleware => Boolean(middleware));
 
 //the middle catch actions before they hit the reducers and log the states out
 const composeEnhancers =
