@@ -9,8 +9,13 @@ import {
 import ProductCard from "../../product-card/product-card.component";
 import Spinner from "../../spinner/spinner.component";
 const Category = () => {
+  type CategoryRouteParams = {
+    category: string;
+  };
   //destuctring
-  const { category } = useParams();
+  const { category } = useParams<
+    keyof CategoryRouteParams
+  >() as CategoryRouteParams;
   console.log("render/re-rendering category component");
   const categoriesMap = useSelector(selectCategoriesMap);
   const [products, setProducts] = useState(categoriesMap[category]);
