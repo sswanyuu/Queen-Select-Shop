@@ -1,19 +1,20 @@
 import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
 import FormInput from "../form-input/form-input.component";
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { useDispatch } from "react-redux";
 import {
   googleSignInStart,
   emailSignInStart,
 } from "../../store/user/user.action";
-const defaultFormFields = {
-  email: "",
-  //not store these info inside our database
-  password: "",
-};
 
 const SignInForm = () => {
+  const defaultFormFields = {
+    email: "",
+    //not store these info inside our database
+    password: "",
+  };
+
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   //destructuring
@@ -27,7 +28,7 @@ const SignInForm = () => {
   const signInWithGoogle = () => {
     dispatch(googleSignInStart());
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     //prevent reload the page
     event.preventDefault();
     //make sure that the password is confirmed
@@ -37,24 +38,11 @@ const SignInForm = () => {
       dispatch(emailSignInStart(email, password));
       resetFormField();
     } catch (error) {
-      console.log(error);
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("No user associated with this email");
-          break;
-        default:
-          console.log(error);
-      }
-      // if (error.code === "auth/wrong-password") {
-      //   alert("Incorrect password for email");
-      // } else if (){}
+      console.log(error, "user sign in failed");
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
@@ -80,7 +68,7 @@ const SignInForm = () => {
           required
         />
         <ButtonsContainer>
-          <Button type="submit" onClick={handleSubmit} children="Sign in" />
+          <Button type="submit" children="Sign in" />
           <Button
             onClick={signInWithGoogle}
             type="button"
