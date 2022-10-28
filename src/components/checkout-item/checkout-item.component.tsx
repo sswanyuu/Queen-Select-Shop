@@ -15,8 +15,12 @@ import {
   removeItemFromCart,
   removeItemWhenCheckout,
 } from "../../store/cart/cart.action";
-
-const CheckoutItem = ({ cartItem }) => {
+import { FC } from "react";
+import { TCartItem } from "../../store/cart/cart.types";
+type CheckoutProps = {
+  cartItem: TCartItem;
+};
+const CheckoutItem: FC<CheckoutProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems);

@@ -6,4 +6,4 @@ export enum CART_ACTION_TYPES {
   SET_CART_TOTAL = "cart/SET_CART_TOTAL",
 }
 //intersection type
-export type CartItem = CategoryItem & { quantity: number };
+export type TCartItem = CategoryItem & { quantity: number };

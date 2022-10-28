@@ -10,8 +10,12 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart, setIsCartOpen } from "../../store/cart/cart.action";
-
-const ProductCard = ({ product }) => {
+import { FC } from "react";
+import { CategoryItem } from "../../store/categories/category.types";
+type ProductCardProps = {
+  product: CategoryItem;
+};
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
 
   const { name, price, imageUrl } = product;
