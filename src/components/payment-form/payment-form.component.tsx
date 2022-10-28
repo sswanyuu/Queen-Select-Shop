@@ -5,6 +5,7 @@ import {
   PaymentFormContainer,
   FormContainer,
   PaymentButton,
+  CardTitle,
 } from "./payment-form.style";
 import { useState, FormEvent } from "react";
 import { useSelector } from "react-redux";
@@ -61,7 +62,7 @@ const PaymentForm = () => {
   return (
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
-        <h2>Credit Card Payment</h2>
+        <CardTitle>Credit Card Payment</CardTitle>
         <CardElement />
         <PaymentButton
           isLoading={isProcessingPayment}
