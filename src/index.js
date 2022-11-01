@@ -8,8 +8,9 @@ import { UserProvider } from "./contexts/users.context";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartItemProvider } from "./contexts/cart-items.context";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
+//for graphQL
 const client = new ApolloClient({
+  //uri point to the url of the server
   uri: "https://crwn-clothing.com/",
   cache: new InMemoryCache(),
 });
