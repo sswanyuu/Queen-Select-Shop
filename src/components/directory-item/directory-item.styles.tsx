@@ -4,6 +4,7 @@ type BackgroundImageProps = {
 };
 export const Body = styled.div`
   height: 90px;
+  width: auto;
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -25,6 +26,20 @@ export const Body = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
+  @media screen and (max-width: 800px) {
+    padding: 5px;
+    height: 70px;
+    width: auto;
+    h2 {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 0;
+    }
+    p {
+      font-weight: lighter;
+      font-size: 12px;
+    }
+  } ;
 `;
 
 export const BackgroundImage = styled.div<BackgroundImageProps>`
@@ -38,7 +53,7 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
 `;
 
 export const DirectoryItemContainer = styled.div`
-  min-width: 25%;
+  min-width: 30%;
   height: 300px;
   flex: 1 1 auto;
   display: flex;
@@ -68,4 +83,8 @@ export const DirectoryItemContainer = styled.div`
       margin-left: 7.5px;
     } */
   }
+  @media screen and (max-width: 800px) {
+    height: 200px;
+    margin: 0.5rem 0.5rem;
+  } ;
 `;
