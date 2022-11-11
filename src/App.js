@@ -13,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkUserSession());
-  }, [checkUserSession]);
+  });
   return (
     <div>
       <GlobalStyle />

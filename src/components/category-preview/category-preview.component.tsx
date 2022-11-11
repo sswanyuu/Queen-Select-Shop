@@ -14,11 +14,10 @@ type CategoryPreviewProps = {
 const CategoryPreview: FC<CategoryPreviewProps> = ({ title, products }) => {
   return (
     <CategoryPreviewContainer>
-      <h2>
-        <Title>
-          <Link to={`/shop/${title}`}>{title.toLowerCase()}</Link>
-        </Title>
-      </h2>
+      <Title>
+        <Link to={`/shop/${title}`}>{title.toLowerCase()}</Link>
+      </Title>
+
       <Preview>
         {products
           .filter((_, index) => {
