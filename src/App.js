@@ -1,3 +1,4 @@
+import { GlobalStyle } from "./global.styles";
 import Home from "./components/routes/home/home.component";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -12,19 +13,22 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkUserSession());
-  }, []);
+  }, [checkUserSession]);
   return (
-    //to reigster these route level components
-    <Routes>
-      {/* when the route is "/", render the <Navigation/> componment*/}
-      <Route path="/" element={<Navigation />}>
-        {/*index = {true}, so that <Home/> will be render when the route "/" */}
-        <Route index element={<Home />} />;
-        <Route path="shop/*" element={<Shop />} />;
-        <Route path="auth" element={<Authentication />} />
-        <Route path="checkout" element={<Checkout />} />
-      </Route>
-    </Routes>
+    <div>
+      <GlobalStyle />
+      {/*to reigster these route level components*/}
+      <Routes>
+        {/* when the route is "/", render the <Navigation/> componment*/}
+        <Route path="/" element={<Navigation />}>
+          {/*index = {true}, so that <Home/> will be render when the route "/" */}
+          <Route index element={<Home />} />;
+          <Route path="shop/*" element={<Shop />} />;
+          <Route path="auth" element={<Authentication />} />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
 export default App;

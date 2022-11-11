@@ -29,7 +29,6 @@ const Navigation = () => {
         <LogoContainer to="/">
           <Logo className="logo" />
         </LogoContainer>
-
         <NavLinkContainer>
           <NavLink to="/shop">Shop</NavLink>
           {currentUser ? (
