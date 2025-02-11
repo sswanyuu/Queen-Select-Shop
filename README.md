@@ -7,7 +7,7 @@ An interactive e-commerce application built with TypeScript, React.js, React Hoo
 
 ✨ Key Features:
  
- ✅ Product Display & Shopping Cart: Browse and select products with an intuitive UI.
+ ✅ Product Display & Shopping Cart – Browse and select products with an intuitive UI.
  
  ✅ State Management with Redux – Efficiently manages application state for a smooth user experience.
  
