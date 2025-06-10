@@ -1,51 +1,48 @@
-import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
-import FormInput from "../form-input/form-input.component";
-import { useState, FormEvent, ChangeEvent } from "react";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { useDispatch } from "react-redux";
-import {
-  googleSignInStart,
-  emailSignInStart,
-} from "../../store/user/user.action";
+import { ButtonsContainer, SignInContainer } from './sign-in-form.styles'
+import FormInput from '../form-input/form-input.component'
+import { useState, FormEvent, ChangeEvent } from 'react'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
+import { useDispatch } from 'react-redux'
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.action'
 
 const SignInForm = () => {
   const defaultFormFields = {
-    email: "",
+    email: '',
     //not store these info inside our database
-    password: "",
-  };
+    password: '',
+  }
 
-  const dispatch = useDispatch();
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const dispatch = useDispatch()
+  const [formFields, setFormFields] = useState(defaultFormFields)
   //destructuring
-  const { email, password } = formFields;
+  const { email, password } = formFields
   // console.log(formFields);
 
   //to clean up the form after submitting
   const resetFormField = () => {
-    setFormFields(defaultFormFields);
-  };
+    setFormFields(defaultFormFields)
+  }
   const signInWithGoogle = () => {
-    dispatch(googleSignInStart());
-  };
+    dispatch(googleSignInStart())
+  }
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     //prevent reload the page
-    event.preventDefault();
+    event.preventDefault()
     //make sure that the password is confirmed
     //try and catch: to sign in with email
     try {
       //response.user
-      dispatch(emailSignInStart(email, password));
-      resetFormField();
+      dispatch(emailSignInStart(email, password))
+      resetFormField()
     } catch (error) {
-      console.log(error, "user sign in failed");
+      console.log(error, 'user sign in failed')
     }
-  };
+  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+    const { name, value } = event.target
+    setFormFields({ ...formFields, [name]: value })
+  }
   return (
     <SignInContainer>
       <h2>Already have an account</h2>
@@ -78,6 +75,6 @@ const SignInForm = () => {
         </ButtonsContainer>
       </form>
     </SignInContainer>
-  );
-};
-export default SignInForm;
+  )
+}
+export default SignInForm

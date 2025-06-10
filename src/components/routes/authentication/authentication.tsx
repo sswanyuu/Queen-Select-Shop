@@ -1,8 +1,8 @@
 //import { useEffect } from "react";
 //import { getRedirectResult } from "firebase/auth";
-import { AuthenticationContainer } from "./authentication.styles";
-import SignInForm from "../../sign-in-form/sign-in-form.component";
-import SignUpForm from "../../sign-up-form/sign-up-form.component";
+import { AuthenticationContainer } from './authentication.styles'
+import SignInForm from '../../sign-in-form/sign-in-form.component'
+import SignUpForm from '../../sign-up-form/sign-up-form.component'
 const Authentication = () => {
   //-----------------------------------------------
   //Sign in  and creat document with google redirect method
@@ -25,6 +25,6 @@ const Authentication = () => {
       <SignInForm />
       <SignUpForm />
     </AuthenticationContainer>
-  );
-};
-export default Authentication;
+  )
+}
+export default Authentication

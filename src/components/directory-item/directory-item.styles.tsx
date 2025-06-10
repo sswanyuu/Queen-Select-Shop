@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 type BackgroundImageProps = {
-  imageUrl: string;
-};
+  imageUrl: string
+}
 export const Body = styled.div`
   height: 90px;
   width: auto;
@@ -39,8 +39,8 @@ export const Body = styled.div`
       font-weight: lighter;
       font-size: 12px;
     }
-  } ;
-`;
+  }
+`
 
 export const BackgroundImage = styled.div<BackgroundImageProps>`
   width: 100%;
@@ -50,7 +50,7 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
   /* the imageUrl can be send as props into this fnction */
   /* destructuring*/
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-`;
+`
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
@@ -86,5 +86,5 @@ export const DirectoryItemContainer = styled.div`
   @media screen and (max-width: 800px) {
     height: 200px;
     margin: 0.5rem 0.5rem;
-  } ;
-`;
+  }
+`

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../button/button.component";
+import styled from 'styled-components'
+import Button from '../button/button.component'
 export const PaymentFormContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -7,7 +7,7 @@ export const PaymentFormContainer = styled.div`
   justify-content: center;
   margin: 10px;
   padding: 10px 10px;
-`;
+`
 export const FormContainer = styled.form`
   margin: 10px;
   padding: 10px 10px;
@@ -15,11 +15,11 @@ export const FormContainer = styled.form`
   flex-direction: column;
   height: 200px;
   min-width: 700px;
-`;
+`
 export const PaymentButton = styled(Button)`
   margin-left: auto;
   margin-top: 2rem;
-`;
+`
 export const CardTitle = styled.h2`
   padding-buttom: 30px;
-`;
+`

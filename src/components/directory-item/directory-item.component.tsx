@@ -1,21 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import {
-  DirectoryItemContainer,
-  BackgroundImage,
-  Body,
-} from "./directory-item.styles";
-import { DirectoryCategory } from "../directory/directory.component";
-import { FC } from "react";
+import { useNavigate } from 'react-router-dom'
+import { DirectoryItemContainer, BackgroundImage, Body } from './directory-item.styles'
+import { DirectoryCategory } from '../directory/directory.component'
+import { FC } from 'react'
 type DirectoryItemProps = {
-  category: DirectoryCategory;
-};
+  category: DirectoryCategory
+}
 const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
   // destructuring the categories*/
-  const { title, imageUrl, route } = category;
-  const navigate = useNavigate();
+  const { title, imageUrl, route } = category
+  const navigate = useNavigate()
   const navigateHandler = () => {
-    navigate(route);
-  };
+    navigate(route)
+  }
   return (
     <DirectoryItemContainer onClick={navigateHandler}>
       {/* style take an object */}
@@ -25,6 +21,6 @@ const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
         <p>Shop now</p>
       </Body>
     </DirectoryItemContainer>
-  );
-};
-export default DirectoryItem;
+  )
+}
+export default DirectoryItem

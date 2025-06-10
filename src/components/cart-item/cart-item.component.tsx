@@ -1,11 +1,11 @@
-import { CartItemContainer, ItemDetail, Name, Img } from "./cart-item.styles";
-import { FC } from "react";
-import { TCartItem } from "../../store/cart/cart.types";
+import { CartItemContainer, ItemDetail, Name, Img } from './cart-item.styles'
+import { FC } from 'react'
+import { TCartItem } from '../../store/cart/cart.types'
 type CartItemProps = {
-  cartItem: TCartItem;
-};
+  cartItem: TCartItem
+}
 const CartItem: FC<CartItemProps> = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { name, imageUrl, price, quantity } = cartItem
   return (
     <CartItemContainer>
       <Img src={imageUrl} alt={name} />
@@ -16,6 +16,6 @@ const CartItem: FC<CartItemProps> = ({ cartItem }) => {
         </span>
       </ItemDetail>
     </CartItemContainer>
-  );
-};
-export default CartItem;
+  )
+}
+export default CartItem

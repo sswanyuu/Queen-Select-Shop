@@ -1,13 +1,9 @@
-import styled from "styled-components";
-import {
-  BaseButton,
-  GoogleSignInButton,
-  InvertedButton,
-} from "../button/button.styles";
+import styled from 'styled-components'
+import { BaseButton, GoogleSignInButton, InvertedButton } from '../button/button.styles'
 export const Hr = styled.hr`
   width: 80%;
   height: 2px;
-`;
+`
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 300px;
@@ -20,9 +16,9 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: medium;
-`;
+`
 
 export const CartItemsContainer = styled.div`
   height: 240px;
@@ -32,18 +28,17 @@ export const CartItemsContainer = styled.div`
   ${BaseButton},${GoogleSignInButton},${InvertedButton} {
     margin-top: auto;
     font-size: small;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
-`;
+`
 export const EmptyMessage = styled.span`
   font-size: 18px;
   margin: 50px auto;
-`;
+`
 
 export const Total = styled.span`
   font-size: large;
   font-weight: 600;
   align-self: center;
   margin: 3px auto;
-`;
+`

@@ -1,27 +1,22 @@
 //A component render to nothing
-import { Fragment } from "react";
+import { Fragment } from 'react'
 //Outlet decide where to put the child route component
 //Link is for connect to another router (just like anchor)
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 //useSelector: to extract data out the reducer
-import { useSelector, useDispatch } from "react-redux";
-import { ReactComponent as Logo } from "../../../assets/crown.svg";
-import CartIcon from "../../cart-icon/cart-icon.component";
-import CartDropdown from "../../cart-drop-down/cart-dropdown.component";
-import {
-  LogoContainer,
-  NavigationContainer,
-  NavLinkContainer,
-  NavLink,
-} from "./navigation.styles";
-import { selectCurrentUser } from "../../../store/user/user.selector";
-import { selectIsCartOpen } from "../../../store/cart/cart.selector";
-import { signOutStart } from "../../../store/user/user.action";
+import { useSelector, useDispatch } from 'react-redux'
+import { ReactComponent as Logo } from '../../../assets/crown.svg'
+import CartIcon from '../../cart-icon/cart-icon.component'
+import CartDropdown from '../../cart-drop-down/cart-dropdown.component'
+import { LogoContainer, NavigationContainer, NavLinkContainer, NavLink } from './navigation.styles'
+import { selectCurrentUser } from '../../../store/user/user.selector'
+import { selectIsCartOpen } from '../../../store/cart/cart.selector'
+import { signOutStart } from '../../../store/user/user.action'
 const Navigation = () => {
-  const dispatch = useDispatch();
-  const signOutUser = () => dispatch(signOutStart());
-  const currentUser = useSelector(selectCurrentUser);
-  const isCartOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch()
+  const signOutUser = () => dispatch(signOutStart())
+  const currentUser = useSelector(selectCurrentUser)
+  const isCartOpen = useSelector(selectIsCartOpen)
   // console.log(currentUser);
   return (
     <Fragment>
@@ -45,6 +40,6 @@ const Navigation = () => {
       </NavigationContainer>
       <Outlet />
     </Fragment>
-  );
-};
-export default Navigation;
+  )
+}
+export default Navigation

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
@@ -50,7 +50,7 @@ export const ProductCardContainer = styled.div`
       }
 
   }
-`;
+`
 export const Name = styled.span`
   width: 80%;
   margin-bottom: 15px;
@@ -62,7 +62,7 @@ export const Name = styled.span`
     margin-bottom: 3px;
     text-align: right;
   }
-`;
+`
 export const Price = styled.span`
   width: 20%;
   margin-bottom: 15px;
@@ -72,7 +72,7 @@ export const Price = styled.span`
     width: 100%;
     font-size: 14px;
   }
-`;
+`
 
 export const Footer = styled.div`
   width: 85%;
@@ -86,4 +86,4 @@ export const Footer = styled.div`
     justify-content: flex-start;
     align-items: end;
   }
-`;
+`

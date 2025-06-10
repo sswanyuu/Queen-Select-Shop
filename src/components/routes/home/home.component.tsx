@@ -1,6 +1,6 @@
-import Directory from "../../directory/directory.component";
+import Directory from '../../directory/directory.component'
 const Home = () => {
-  return <Directory />;
-};
+  return <Directory />
+}
 
-export default Home;
+export default Home

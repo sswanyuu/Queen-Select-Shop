@@ -1,29 +1,24 @@
-import {
-  Footer,
-  Name,
-  Price,
-  ProductCardContainer,
-} from "./product-card.styles";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { Footer, Name, Price, ProductCardContainer } from './product-card.styles'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector";
-import { addItemToCart, setIsCartOpen } from "../../store/cart/cart.action";
-import { FC } from "react";
-import { CategoryItem } from "../../store/categories/category.types";
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '../../store/cart/cart.selector'
+import { addItemToCart, setIsCartOpen } from '../../store/cart/cart.action'
+import { FC } from 'react'
+import { CategoryItem } from '../../store/categories/category.types'
 type ProductCardProps = {
-  product: CategoryItem;
-};
+  product: CategoryItem
+}
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { name, price, imageUrl } = product;
-  const cartItems = useSelector(selectCartItems);
+  const { name, price, imageUrl } = product
+  const cartItems = useSelector(selectCartItems)
   const addProductToCart = () => {
-    dispatch(addItemToCart(cartItems, product));
-    dispatch(setIsCartOpen(true));
-  };
+    dispatch(addItemToCart(cartItems, product))
+    dispatch(setIsCartOpen(true))
+  }
 
   return (
     <ProductCardContainer>
@@ -32,13 +27,10 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         <Name>{name}</Name>
         <Price>${price}</Price>
       </Footer>
-      <Button
-        buttonType={BUTTON_TYPE_CLASSES.inverted}
-        onClick={addProductToCart}
-      >
+      <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>
         Add To Cart
       </Button>
     </ProductCardContainer>
-  );
-};
-export default ProductCard;
+  )
+}
+export default ProductCard
