@@ -1,4 +1,4 @@
-import { CATEGORIES_ACTION_TYPES, Category } from './category.types'
+import { Category } from './category.types'
 import {
   fetchCategoriesStart,
   fetchCategoriesSuccess,
@@ -11,7 +11,7 @@ export type CategoriesState = {
   readonly isLoading: boolean
   readonly error: Error | null
 }
-export const CATEGORIES_INTIAL_STATE: CategoriesState = {
+export const CATEGORIES_INITIAL_STATE: CategoriesState = {
   categories: [],
   //track if the data is loading or not
   isLoading: false,
@@ -20,7 +20,7 @@ export const CATEGORIES_INTIAL_STATE: CategoriesState = {
 }
 
 export const categoriesReducer = (
-  state = CATEGORIES_INTIAL_STATE,
+  state = CATEGORIES_INITIAL_STATE,
   //action can be anyAction
   action: AnyAction,
 ): CategoriesState => {

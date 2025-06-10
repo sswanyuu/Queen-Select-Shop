@@ -1,4 +1,3 @@
-import { CategoriesState } from './category.reducer'
 export enum CATEGORIES_ACTION_TYPES {
   //define the string as a special type
   FETCH_CATEGORIES_START = 'category/FETCH_CATEGORIES_START',

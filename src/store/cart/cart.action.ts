@@ -1,12 +1,6 @@
 import { CategoryItem } from '../categories/category.types'
 import { CART_ACTION_TYPES, TCartItem } from './cart.types'
-import {
-  createAction,
-  withMatcher,
-  Action,
-  ActionWithPayload,
-} from '../../utils/reducer/reducer.utils'
-import { type } from 'os'
+import { createAction, withMatcher, ActionWithPayload } from '../../utils/reducer/reducer.utils'
 
 const addCartItem = (cartItems: TCartItem[], productToAdd: CategoryItem): TCartItem[] => {
   const existingCartItem = cartItems.find((cartItem) => {

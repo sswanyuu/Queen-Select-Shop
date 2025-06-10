@@ -6,7 +6,6 @@ type DirectoryItemProps = {
   category: DirectoryCategory
 }
 const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
-  // destructuring the categories*/
   const { title, imageUrl, route } = category
   const navigate = useNavigate()
   const navigateHandler = () => {

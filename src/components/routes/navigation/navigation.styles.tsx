@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-//make sure that all the classes has their unique className
 export const NavigationContainer = styled.div`
   height: 70px;
   width: 100%;

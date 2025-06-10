@@ -1,8 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 import {
   getAuth,
   //signInWithRedirect,
@@ -30,7 +27,6 @@ import {
 } from 'firebase/firestore'
 import { Category } from '../../store/categories/category.types'
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyD81KgezZBdMUTREv_Rwm3d-pH61HBTY4c',
   authDomain: 'queen-select-shop.firebaseapp.com',
@@ -40,23 +36,15 @@ const firebaseConfig = {
   appId: '1:979545585433:web:c8b59131d8b1d394ea3788',
 }
 
-// Initialize Firebase
-//To be able to CRUB
-const firebaseApp = initializeApp(firebaseConfig)
-//thiss is the class of Google provider
+initializeApp(firebaseConfig)
 const googleProvider = new GoogleAuthProvider()
 
 googleProvider.setCustomParameters({
   //always ask the users to selsect a google accout
   prompt: 'select_account',
 })
-//the authentication that communte with the firebase
-//the same one for every application
-//keep track the auth even when refreshing the website
 export const auth = getAuth()
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
-// export const signInWithGoogleRedirect = () =>
-//   signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore()
 export type ObjectsToAdd = {
@@ -95,7 +83,6 @@ export type UserData = {
   displayName: string
   email: string
 }
-//the additionalInfo is an object
 export const createUserDocumentFromAuth = async (
   userAuth: User,
   addittonInfo = {} as AdditionalInfo,
@@ -128,8 +115,6 @@ export const createUserDocumentFromAuth = async (
   }
   return userSnapshot as QueryDocumentSnapshot<UserData>
 }
-//put all the function from using external API (database) in one place
-//if there is any change, it's easier to organize
 export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
   if (!email || !password) return
   return createUserWithEmailAndPassword(auth, email, password)

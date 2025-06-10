@@ -1,9 +1,5 @@
-//A component render to nothing
 import { Fragment } from 'react'
-//Outlet decide where to put the child route component
-//Link is for connect to another router (just like anchor)
 import { Outlet } from 'react-router-dom'
-//useSelector: to extract data out the reducer
 import { useSelector, useDispatch } from 'react-redux'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import CartIcon from '../../cart-icon/cart-icon.component'

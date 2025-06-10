@@ -5,5 +5,4 @@ export enum CART_ACTION_TYPES {
   SET_CART_COUNT = 'cart/SET_CART_COUNT',
   SET_CART_TOTAL = 'cart/SET_CART_TOTAL',
 }
-//intersection type
 export type TCartItem = CategoryItem & { quantity: number }

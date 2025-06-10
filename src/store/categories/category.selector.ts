@@ -3,7 +3,6 @@ import { CategoriesState } from './category.reducer'
 import { CategoryMap } from './category.types'
 import { RootState } from '../store'
 const selectCategoryReducer = (state: RootState): CategoriesState => state.categories
-//input/ouput
 export const selectCategories = createSelector([selectCategoryReducer], (categoriesSlice) => {
   return categoriesSlice.categories
 })
