@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import {
   Total,
   Hr,
@@ -10,7 +11,22 @@ import CartItem from '../cart-item/cart-item.component'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector'
+import { useDispatch } from 'react-redux'
+import { setIsCartOpen } from '../../store/cart/cart.action'
+
 const CartDropdown = () => {
+  const dispatch = useDispatch()
+  const cartRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+        dispatch(setIsCartOpen(false))
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  })
   const cartItems = useSelector(selectCartItems)
   const total = useSelector(selectCartTotal)
   const navigate = useNavigate()
@@ -18,7 +34,7 @@ const CartDropdown = () => {
     navigate('/checkout')
   }
   return (
-    <CartDropdownContainer>
+    <CartDropdownContainer ref={cartRef}>
       <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((item) => {
