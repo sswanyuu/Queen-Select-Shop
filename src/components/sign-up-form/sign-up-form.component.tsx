@@ -1,10 +1,9 @@
-import { SignUpContainer } from './sign-up-form.styles'
+import { SignUpContainer, ButtonsContainer } from './sign-up-form.styles'
 import FormInput from '../form-input/form-input.component'
 import { useState, FormEvent, ChangeEvent } from 'react'
-import Button from '../button/button.component'
-import { AuthError, AuthErrorCodes } from 'firebase/auth'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 import { useDispatch } from 'react-redux'
-import { signUpStart } from '../../store/user/user.action'
+import { signUpStart, googleSignInStart } from '../../store/user/user.action'
 import { showNotification } from '../../store/notification/notification.action'
 
 const defaultFormFields = {
@@ -24,6 +23,13 @@ const SignUpForm = () => {
   //to clean up the form after submitting
   const resetFormField = () => {
     setFormFields(defaultFormFields)
+  }
+  const signInWithGoogle = async () => {
+    try {
+      dispatch(googleSignInStart())
+    } catch (error) {
+      dispatch(showNotification((error as Error).message, 'error'))
+    }
   }
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -47,7 +53,7 @@ const SignUpForm = () => {
   return (
     <SignUpContainer>
       <h2>Don't have an account?</h2>
-      <span>Sign up with e-mail address</span>
+      <span>Sign up with your email or Google</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
@@ -82,7 +88,12 @@ const SignUpForm = () => {
           value={confirmPassword}
           required
         />
-        <Button type="submit" children="Sign Up" />
+        <ButtonsContainer>
+          <Button type="submit">Sign Up</Button>
+          <Button type="button" onClick={signInWithGoogle} buttonType={BUTTON_TYPE_CLASSES.google}>
+            Sign up with Google
+          </Button>
+        </ButtonsContainer>
       </form>
     </SignUpContainer>
   )

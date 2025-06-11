@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { SpinnerContainer } from '../spinner/spinner.style'
 export const BaseButton = styled.button`
+  border-radius: 10px;
   min-width: 165px;
   width: auto;
   height: 50px;

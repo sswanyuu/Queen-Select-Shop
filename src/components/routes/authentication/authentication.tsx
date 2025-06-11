@@ -1,7 +1,13 @@
-import { AuthenticationContainer } from './authentication.styles'
+import { useState } from 'react'
+import { AuthenticationContainer, ToggleButton } from './authentication.styles'
 import SignInForm from '../../sign-in-form/sign-in-form.component'
 import SignUpForm from '../../sign-up-form/sign-up-form.component'
 const Authentication = () => {
+  const [isNewUser, setIsNewUser] = useState(true)
+  const toggleForm = () => {
+    setIsNewUser(!isNewUser)
+  }
+
   //-----------------------------------------------
   //Sign in  and creat document with google redirect method
   //   useEffect(
@@ -20,8 +26,10 @@ const Authentication = () => {
 
   return (
     <AuthenticationContainer>
-      <SignInForm />
-      <SignUpForm />
+      {isNewUser ? <SignUpForm /> : <SignInForm />}
+      <ToggleButton onClick={toggleForm}>
+        {isNewUser ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+      </ToggleButton>
     </AuthenticationContainer>
   )
 }
