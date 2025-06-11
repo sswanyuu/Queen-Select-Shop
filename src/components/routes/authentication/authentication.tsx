@@ -2,8 +2,19 @@ import { useState } from 'react'
 import { AuthenticationContainer, ToggleButton } from './authentication.styles'
 import SignInForm from '../../sign-in-form/sign-in-form.component'
 import SignUpForm from '../../sign-up-form/sign-up-form.component'
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from '../../../store/user/user.selector'
+import { Navigate } from 'react-router-dom'
+
 const Authentication = () => {
   const [isNewUser, setIsNewUser] = useState(true)
+  const currentUser = useSelector(selectCurrentUser)
+
+  // Redirect to welcome page if user is signed in
+  if (currentUser) {
+    return <Navigate to="/welcome" replace />
+  }
+
   const toggleForm = () => {
     setIsNewUser(!isNewUser)
   }
@@ -33,4 +44,5 @@ const Authentication = () => {
     </AuthenticationContainer>
   )
 }
+
 export default Authentication
