@@ -1,0 +1,4 @@
+export const NOTIFICATION_ACTION_TYPES = {
+  SHOW_NOTIFICATION: 'notification/SHOW_NOTIFICATION',
+  HIDE_NOTIFICATION: 'notification/HIDE_NOTIFICATION',
+} as const
