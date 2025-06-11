@@ -5,6 +5,8 @@ import Button from '../button/button.component'
 import { AuthError, AuthErrorCodes } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { signUpStart } from '../../store/user/user.action'
+import { showNotification } from '../../store/notification/notification.action'
+
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -12,6 +14,7 @@ const defaultFormFields = {
   password: '',
   confirmPassword: '',
 }
+
 const SignUpForm = () => {
   const dispatch = useDispatch()
   const [formFields, setFormFields] = useState(defaultFormFields)
@@ -23,23 +26,18 @@ const SignUpForm = () => {
     setFormFields(defaultFormFields)
   }
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    //prevent reload the page
     event.preventDefault()
-    //make sure that the password is confirmed
+
     if (password !== confirmPassword) {
-      alert('Passwords do not match.')
+      dispatch(showNotification("Passwords don't match", 'error'))
       return
     }
-    //try and catch: to build a document
+
     try {
       dispatch(signUpStart(email, password, displayName))
       resetFormField()
     } catch (error) {
-      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
-        alert('Cannot create user. E-mail already in use.  ')
-      } else {
-        console.log('User creation encountered an error.', error)
-      }
+      dispatch(showNotification((error as Error).message, 'error'))
     }
   }
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

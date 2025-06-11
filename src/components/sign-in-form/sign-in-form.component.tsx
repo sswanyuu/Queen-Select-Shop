@@ -4,15 +4,16 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 import { useDispatch } from 'react-redux'
 import { googleSignInStart, emailSignInStart } from '../../store/user/user.action'
+import { showNotification } from '../../store/notification/notification.action'
 
 const SignInForm = () => {
+  const dispatch = useDispatch()
   const defaultFormFields = {
     email: '',
     //not store these info inside our database
     password: '',
   }
 
-  const dispatch = useDispatch()
   const [formFields, setFormFields] = useState(defaultFormFields)
   //destructuring
   const { email, password } = formFields
@@ -22,20 +23,22 @@ const SignInForm = () => {
   const resetFormField = () => {
     setFormFields(defaultFormFields)
   }
-  const signInWithGoogle = () => {
-    dispatch(googleSignInStart())
-  }
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    //prevent reload the page
-    event.preventDefault()
-    //make sure that the password is confirmed
-    //try and catch: to sign in with email
+
+  const signInWithGoogle = async () => {
     try {
-      //response.user
+      dispatch(googleSignInStart())
+    } catch (error) {
+      dispatch(showNotification((error as Error).message, 'error'))
+    }
+  }
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    try {
       dispatch(emailSignInStart(email, password))
       resetFormField()
     } catch (error) {
-      console.log(error, 'user sign in failed')
+      dispatch(showNotification((error as Error).message, 'error'))
     }
   }
 
@@ -43,6 +46,7 @@ const SignInForm = () => {
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })
   }
+
   return (
     <SignInContainer>
       <h2>Already have an account</h2>
@@ -77,4 +81,5 @@ const SignInForm = () => {
     </SignInContainer>
   )
 }
+
 export default SignInForm
