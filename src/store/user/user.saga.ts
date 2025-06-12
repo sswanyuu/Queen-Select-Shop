@@ -22,21 +22,25 @@ import {
   signOutUser,
 } from '../../utils/firebase/firebase.utils'
 import { showNotification } from '../notification/notification.action'
+import { syncCartStart, clearCartLocalOnly } from '../cart/cart.action'
 
 export function* getSnapshotFromUserAuth(userAuth: User, additionalDetails?: AdditionalInfo) {
   try {
     const userSnapshot = yield* call(createUserDocumentFromAuth, userAuth, additionalDetails)
     if (userSnapshot) {
+      const userData = userSnapshot.data()
       yield* put(
         signInSuccess({
+          ...userData,
           id: userSnapshot.id,
-          ...userSnapshot.data(),
         }),
       )
-      yield* put(showNotification('Successfully signed!', 'success'))
+      yield* put(showNotification('Successfully signed in!', 'success'))
+      yield* put(syncCartStart(userAuth.uid))
     }
   } catch (error) {
     yield* put(signInFailed(error as Error))
+    yield* put(showNotification('Failed to sign in', 'error'))
   }
 }
 
@@ -95,6 +99,7 @@ export function* signOut() {
   try {
     yield* call(signOutUser)
     yield* put(signOutSuccess())
+    yield* put(clearCartLocalOnly())
     yield* put(showNotification('Successfully signed out!', 'success'))
   } catch (error) {
     yield* put(signOutFailed(error as Error))

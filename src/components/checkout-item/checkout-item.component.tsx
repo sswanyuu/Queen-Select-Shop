@@ -16,7 +16,7 @@ import {
   removeItemWhenCheckout,
 } from '../../store/cart/cart.action'
 import { FC } from 'react'
-import { TCartItem } from '../../store/cart/cart.types'
+import { CartItem as TCartItem } from '../../store/cart/cart.types'
 type CheckoutProps = {
   cartItem: TCartItem
 }

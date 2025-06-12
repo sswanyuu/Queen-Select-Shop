@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app'
 
 import {
   getAuth,
-  //signInWithRedirect,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -24,8 +23,12 @@ import {
   query,
   getDocs,
   QueryDocumentSnapshot,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore'
 import { Category } from '../../store/categories/category.types'
+import { CartItem } from '../../store/cart/cart.types'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD81KgezZBdMUTREv_Rwm3d-pH61HBTY4c',
@@ -79,6 +82,7 @@ export type AdditionalInfo = {
   displayName?: string
 }
 export type UserData = {
+  id: string
   createDate: Date
   displayName: string
   email: string
@@ -90,23 +94,18 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return
   const { displayName, email, uid } = userAuth
   console.log(userAuth)
-  //database/collection name/identifier
-  //uid is the unique id of google account
   const userDocRef = doc(db, 'users', uid)
-  // console.log(userDocRef);
   const userSnapshot = await getDoc(userDocRef)
   console.log(userSnapshot)
-  //check if the doc exit
-  //if the doc doesn't exist, build a new doc
+
   if (!userSnapshot.exists()) {
     const createDate = new Date()
-    //try something asynchronous. if there is any error, catch it
     try {
       await setDoc(userDocRef, {
+        id: uid,
         displayName,
         email,
         createDate,
-        //spread the object of the end of the doc
         ...addittonInfo,
       })
     } catch (error) {
@@ -139,4 +138,73 @@ export const getCurrentUser = (): Promise<User | null> => {
       reject,
     )
   })
+}
+
+export const saveCartItems = async (userId: string, cartItems: CartItem[]): Promise<void> => {
+  try {
+    const userCartRef = doc(db, 'carts', userId)
+    const cartSnapshot = await getDoc(userCartRef)
+
+    if (!cartSnapshot.exists()) {
+      // Create new cart document if it doesn't exist
+      await setDoc(userCartRef, { items: cartItems })
+    } else {
+      // Update existing cart document
+      await updateDoc(userCartRef, { items: cartItems })
+    }
+  } catch (error) {
+    console.error('Error saving cart items:', error)
+    throw error
+  }
+}
+
+export const loadCartItems = async (userId: string): Promise<CartItem[]> => {
+  try {
+    const userCartRef = doc(db, 'carts', userId)
+    const cartSnapshot = await getDoc(userCartRef)
+
+    if (cartSnapshot.exists()) {
+      return cartSnapshot.data().items
+    }
+    return []
+  } catch (error) {
+    console.error('Error loading cart items:', error)
+    throw error
+  }
+}
+
+export const addItemToCart = async (userId: string, itemToAdd: CartItem): Promise<void> => {
+  try {
+    const userCartRef = doc(db, 'carts', userId)
+    await updateDoc(userCartRef, {
+      items: arrayUnion(itemToAdd),
+    })
+  } catch (error) {
+    console.error('Error adding item to cart:', error)
+    throw error
+  }
+}
+
+export const removeItemFromCart = async (userId: string, itemToRemove: CartItem): Promise<void> => {
+  try {
+    const userCartRef = doc(db, 'carts', userId)
+    await updateDoc(userCartRef, {
+      items: arrayRemove(itemToRemove),
+    })
+  } catch (error) {
+    console.error('Error removing item from cart:', error)
+    throw error
+  }
+}
+
+export const clearCart = async (userId: string): Promise<void> => {
+  try {
+    const userCartRef = doc(db, 'carts', userId)
+    await updateDoc(userCartRef, {
+      items: [],
+    })
+  } catch (error) {
+    console.error('Error clearing cart:', error)
+    throw error
+  }
 }
