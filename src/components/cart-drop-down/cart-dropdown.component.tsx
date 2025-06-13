@@ -5,6 +5,7 @@ import {
   CartDropdownContainer,
   CartItemsContainer,
   EmptyMessage,
+  BackgroundCover,
 } from './cart-dropdown.styles'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 import CartItem from '../cart-item/cart-item.component'
@@ -26,32 +27,43 @@ const CartDropdown = () => {
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  })
+  }, [dispatch])
+
   const cartItems = useSelector(selectCartItems)
   const total = useSelector(selectCartTotal)
   const navigate = useNavigate()
   const goToCheckoutHandler = () => {
     navigate('/checkout')
+    dispatch(setIsCartOpen(false))
   }
+
+  const handleBackgroundClick = () => {
+    dispatch(setIsCartOpen(false))
+  }
+
   return (
-    <CartDropdownContainer ref={cartRef}>
-      <CartItemsContainer>
-        {cartItems.length ? (
-          cartItems.map((item) => {
-            return <CartItem key={item.id} cartItem={item} />
-          })
-        ) : (
-          <EmptyMessage>Your cart is empty</EmptyMessage>
-        )}
-      </CartItemsContainer>
-      <Hr></Hr>
-      <Total>Total : ${total}</Total>
-      <Button
-        buttonType={BUTTON_TYPE_CLASSES.inverted}
-        children="Check out"
-        onClick={goToCheckoutHandler}
-      />
-    </CartDropdownContainer>
+    <>
+      <BackgroundCover onClick={handleBackgroundClick} />
+      <CartDropdownContainer ref={cartRef}>
+        <CartItemsContainer>
+          {cartItems.length ? (
+            cartItems.map((item) => {
+              return <CartItem key={item.id} cartItem={item} />
+            })
+          ) : (
+            <EmptyMessage>Your cart is empty</EmptyMessage>
+          )}
+        </CartItemsContainer>
+        <Hr />
+        <Total>Total : ${total}</Total>
+        <Button
+          buttonType={BUTTON_TYPE_CLASSES.inverted}
+          children="Check out"
+          onClick={goToCheckoutHandler}
+        />
+      </CartDropdownContainer>
+    </>
   )
 }
+
 export default CartDropdown

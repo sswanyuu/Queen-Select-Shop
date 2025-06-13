@@ -1,12 +1,9 @@
 import styled from 'styled-components'
 import { BaseButton, GoogleSignInButton, InvertedButton } from '../button/button.styles'
-export const Hr = styled.hr`
-  width: 80%;
-  height: 2px;
-`
+
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 300px;
+  width: 240px;
   height: 340px;
   display: flex;
   flex-direction: column;
@@ -20,6 +17,16 @@ export const CartDropdownContainer = styled.div`
   font-size: medium;
 `
 
+export const BackgroundCover = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+`
+
 export const CartItemsContainer = styled.div`
   height: 240px;
   display: flex;
@@ -31,14 +38,16 @@ export const CartItemsContainer = styled.div`
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 `
+
 export const EmptyMessage = styled.span`
   font-size: 18px;
   margin: 50px auto;
 `
 
+export const Hr = styled.hr`
+  margin: 10px 0;
+`
+
 export const Total = styled.span`
-  font-size: large;
-  font-weight: 600;
-  align-self: center;
-  margin: 3px auto;
+  margin-bottom: 10px;
 `
