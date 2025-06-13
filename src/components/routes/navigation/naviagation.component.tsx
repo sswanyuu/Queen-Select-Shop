@@ -1,41 +1,46 @@
-import { Fragment } from 'react'
-import { Outlet } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { ReactComponent as Logo } from '../../../assets/crown.svg'
+import { Outlet, useLocation } from 'react-router-dom'
+import { ReactComponent as CrownLogo } from '../../../assets/crown.svg'
 import CartIcon from '../../cart-icon/cart-icon.component'
 import CartDropdown from '../../cart-drop-down/cart-dropdown.component'
-import { LogoContainer, NavigationContainer, NavLinkContainer, NavLink } from './navigation.styles'
+import { NavigationContainer, LogoContainer, NavLinkContainer, NavLink } from './navigation.styles'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentUser } from '../../../store/user/user.selector'
 import { selectIsCartOpen } from '../../../store/cart/cart.selector'
 import { signOutStart } from '../../../store/user/user.action'
+
 const Navigation = () => {
   const dispatch = useDispatch()
-  const signOutUser = () => dispatch(signOutStart())
   const currentUser = useSelector(selectCurrentUser)
   const isCartOpen = useSelector(selectIsCartOpen)
-  // console.log(currentUser);
+  const location = useLocation()
+  const isCheckoutPage = location.pathname === '/checkout'
+
+  const signOutHandler = () => {
+    dispatch(signOutStart())
+  }
+
   return (
-    <Fragment>
+    <>
       <NavigationContainer>
         <LogoContainer to="/">
-          <Logo className="logo" />
+          <CrownLogo className="logo" />
         </LogoContainer>
         <NavLinkContainer>
-          <NavLink to="/shop">Shop</NavLink>
+          <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            //use the style of NavLink but as span
-            <NavLink as="span" onClick={signOutUser}>
-              Sign Out
+            <NavLink as="span" onClick={signOutHandler}>
+              SIGN OUT
             </NavLink>
           ) : (
-            <NavLink to="/auth">Sign In</NavLink>
+            <NavLink to="/auth">SIGN IN</NavLink>
           )}
-          <CartIcon />
+          {!isCheckoutPage && <CartIcon />}
         </NavLinkContainer>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
-    </Fragment>
+    </>
   )
 }
+
 export default Navigation
