@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import Button from '../button/button.component'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
+
 export const PaymentFormContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -15,7 +17,7 @@ export const FormContainer = styled.form`
   flex-direction: column;
   height: 200px;
   min-width: 700px;
-  @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     min-width: 300px;
   }
 `

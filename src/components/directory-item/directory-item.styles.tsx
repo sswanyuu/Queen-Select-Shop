@@ -1,7 +1,10 @@
 import styled from 'styled-components'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
+
 type BackgroundImageProps = {
   imageUrl: string
 }
+
 export const Body = styled.div`
   height: 90px;
   width: auto;
@@ -22,11 +25,13 @@ export const Body = styled.div`
     font-size: 22px;
     color: #4a4a4a;
   }
+
   p {
     font-weight: lighter;
     font-size: 16px;
   }
-  @media screen and (max-width: 800px) {
+
+  ${MEDIA_QUERIES.mobile} {
     padding: 5px;
     height: 70px;
     width: auto;
@@ -47,8 +52,6 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
   height: 100%;
   background-size: cover;
   background-position: center;
-  /* the imageUrl can be send as props into this fnction */
-  /* destructuring*/
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `
 
@@ -83,7 +86,8 @@ export const DirectoryItemContainer = styled.div`
       margin-left: 7.5px;
     } */
   }
-  @media screen and (max-width: 800px) {
+
+  ${MEDIA_QUERIES.mobile} {
     height: 200px;
     margin: 0.5rem 0.5rem;
   }

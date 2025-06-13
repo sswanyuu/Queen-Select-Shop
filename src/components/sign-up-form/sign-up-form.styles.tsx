@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
 
 export const SignUpContainer = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const SignUpContainer = styled.div`
     margin: 10px 0;
   }
 
-  @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     width: 100%;
   }
 `

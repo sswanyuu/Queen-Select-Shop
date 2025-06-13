@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
+
 export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
@@ -34,13 +36,14 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
-  @media screen and (max-width: 800px) {
+
+  ${MEDIA_QUERIES.mobile} {
     height: 300px;
     img {
       height: 85%;
     }
     button {
-      display:block;
+      display: block;
       font-size: 8px;
       top: 125px;
     }
@@ -57,18 +60,20 @@ export const Name = styled.span`
   font-size: 18px;
   text-align: left;
   @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     width: 100%;
     font-size: 14px;
     margin-bottom: 3px;
     text-align: right;
   }
 `
+
 export const Price = styled.span`
   width: 20%;
   margin-bottom: 15px;
   font-size: 16px;
   text-align: right;
-  @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     width: 100%;
     font-size: 14px;
   }
@@ -79,7 +84,7 @@ export const Footer = styled.div`
   height: 5%;
   display: flex;
   justify-content: space-between;
-  @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     width: 100%;
     height: 15%;
     flex-direction: column;

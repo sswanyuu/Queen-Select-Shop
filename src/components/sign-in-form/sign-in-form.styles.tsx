@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
+
 export const SignInContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@ export const SignInContainer = styled.div`
   .h2 {
     margin: 10px 0;
   }
-  @media screen and (max-width: 800px) {
+  ${MEDIA_QUERIES.mobile} {
     width: 100%;
   }
 `
