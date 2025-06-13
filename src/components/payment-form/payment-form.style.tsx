@@ -5,7 +5,7 @@ export const PaymentFormContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 40px;
   padding: 10px 10px;
 `
 export const FormContainer = styled.form`
@@ -15,11 +15,14 @@ export const FormContainer = styled.form`
   flex-direction: column;
   height: 200px;
   min-width: 700px;
+  @media screen and (max-width: 800px) {
+    min-width: 300px;
+  }
 `
 export const PaymentButton = styled(Button)`
   margin-left: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
 `
 export const CardTitle = styled.h2`
-  padding-buttom: 30px;
+  padding-bottom: 10px;
 `

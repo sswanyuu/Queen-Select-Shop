@@ -11,21 +11,15 @@ const Checkout = () => {
   return (
     <CheckoutContainer>
       <CheckoutHeader>
-        <HeaderBlock>
-          <span>Product</span>
-        </HeaderBlock>
+        <HeaderBlock />
         <HeaderBlock>
           <span>Description</span>
         </HeaderBlock>
         <HeaderBlock>
           <span>Quantity</span>
         </HeaderBlock>
-        <HeaderBlock>
-          <span>Price</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Remove</span>
-        </HeaderBlock>
+        <HeaderBlock />
+        <HeaderBlock />
       </CheckoutHeader>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
