@@ -1,4 +1,12 @@
-import { Footer, Name, Price, ProductCardContainer } from './product-card.styles'
+import {
+  Footer,
+  Name,
+  Price,
+  ProductCardContainer,
+  LoadingText,
+  ErrorText,
+  ProductImage,
+} from './product-card.styles'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
 import { useDispatch } from 'react-redux'
@@ -6,7 +14,7 @@ import { useSelector } from 'react-redux'
 import { selectCartItems } from '../../store/cart/cart.selector'
 import { addItemToCart } from '../../store/cart/cart.action'
 import { showNotification } from '../../store/notification/notification.action'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { CategoryItem } from '../../store/categories/category.types'
 
 type ProductCardProps = {
@@ -15,6 +23,8 @@ type ProductCardProps = {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch()
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageError, setImageError] = useState(false)
 
   const { name, price, imageUrl } = product
   const cartItems = useSelector(selectCartItems)
@@ -24,16 +34,37 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     dispatch(showNotification(`${name} added to cart`, 'success'))
   }
 
+  const handleImageLoad = () => {
+    setImageLoaded(true)
+  }
+
+  const handleImageError = () => {
+    setImageError(true)
+    setImageLoaded(true)
+  }
+
   return (
     <ProductCardContainer>
-      <img src={imageUrl} alt={name}></img>
+      {!imageLoaded && <LoadingText>Loading...</LoadingText>}
+      <ProductImage
+        src={imageUrl}
+        alt={name}
+        loading="lazy"
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+        $loaded={imageLoaded}
+      />
+      {imageError && <ErrorText>Image not available</ErrorText>}
+
       <Footer>
         <Name>{name}</Name>
         <Price>${price}</Price>
       </Footer>
-      <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>
-        Add To Cart
-      </Button>
+      {imageLoaded && (
+        <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>
+          Add To Cart
+        </Button>
+      )}
     </ProductCardContainer>
   )
 }

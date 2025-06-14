@@ -8,6 +8,7 @@ import Authentication from './components/routes/authentication/authentication'
 import Shop from './components/routes/shop/shop.component'
 import Checkout from './components/routes/checkout/checkout.component'
 import { checkUserSession } from './store/user/user.action'
+import { fetchCategoriesStart } from './store/categories/category.action'
 import NotificationContainer from './components/notification/notification-container.component'
 import Welcome from './routes/welcome/welcome.component'
 
@@ -15,7 +16,9 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(checkUserSession())
-  })
+    dispatch(fetchCategoriesStart()) // Prefetch categories for better UX
+  }, [dispatch])
+
   return (
     <div>
       <GlobalStyle />

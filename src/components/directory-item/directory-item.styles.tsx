@@ -55,6 +55,19 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `
 
+export const LoadingIndicator = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  z-index: 1;
+  font-size: 16px;
+
+  ${MEDIA_QUERIES.mobile} {
+    font-size: 14px;
+  }
+`
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
   height: 300px;
@@ -66,6 +79,7 @@ export const DirectoryItemContainer = styled.div`
   border-radius: 10px;
   margin: 1rem 1rem;
   overflow: hidden;
+  position: relative;
 
   &:hover {
     cursor: pointer;

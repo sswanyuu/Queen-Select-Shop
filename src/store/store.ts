@@ -17,7 +17,7 @@ type ExtendsPersistConfig = PersistConfig<RootState> & {
 const persistConfig: ExtendsPersistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['cart'],
+  whitelist: ['cart', 'categories'],
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
