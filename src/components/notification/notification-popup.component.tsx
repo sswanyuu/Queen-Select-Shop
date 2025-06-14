@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
+import { MEDIA_QUERIES } from '../../utils/breakpoints'
 
 const slideDown = keyframes`
   from { 
@@ -37,6 +38,10 @@ const PopupContainer = styled.div<{ type: 'success' | 'error' }>`
           background: #f44336;
           color: white;
         `}
+  ${MEDIA_QUERIES.mobile} {
+    font-size: 12px;
+    width: 80%;
+  }
 `
 
 const Message = styled.span`

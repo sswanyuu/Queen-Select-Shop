@@ -27,8 +27,7 @@ export const Preview = styled.div`
   column-gap: 20px;
   row-gap: 50px;
   ${MEDIA_QUERIES.mobile} {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
     row-gap: 10px;
   }
 `

@@ -27,11 +27,26 @@ export const ProductCardContainer = styled.div`
   }
 
   ${MEDIA_QUERIES.mobile} {
-    height: 300px;
+    flex-direction: row;
+    height: 100px;
+    align-items: center;
+    padding: 10px;
+    gap: 15px;
+    border: 1px solid;
+    border-radius: 10px;
     button {
-      display: block;
-      font-size: 8px;
-      top: 125px;
+      display: flex;
+      position: relative;
+      top: unset;
+      width: auto;
+      min-width: 80px;
+      height: 35px;
+      font-size: 10px;
+      padding: 8px 12px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      align-self: end;
     }
   }
 `
@@ -45,20 +60,21 @@ export const LoadingText = styled.div`
   font-size: 14px;
 `
 
-export const ErrorText = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #999;
-  text-align: center;
-  font-size: 14px;
-`
-
 type ProductImageProps = {
   $loaded: boolean
 }
-
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${MEDIA_QUERIES.mobile} {
+    width: 100px;
+    height: 100px;
+  }
+`
 export const ProductImage = styled.img<ProductImageProps>`
   width: 100%;
   height: 95%;
@@ -82,12 +98,12 @@ export const Name = styled.span`
   margin-bottom: 15px;
   font-size: 18px;
   text-align: left;
-  @media screen and (max-width: 800px) {
+
   ${MEDIA_QUERIES.mobile} {
     width: 100%;
     font-size: 14px;
     margin-bottom: 3px;
-    text-align: right;
+    text-align: left;
   }
 `
 
@@ -96,9 +112,11 @@ export const Price = styled.span`
   margin-bottom: 15px;
   font-size: 16px;
   text-align: right;
+
   ${MEDIA_QUERIES.mobile} {
     width: 100%;
     font-size: 14px;
+    text-align: left;
   }
 `
 
@@ -107,11 +125,15 @@ export const Footer = styled.div`
   height: 5%;
   display: flex;
   justify-content: space-between;
+
   ${MEDIA_QUERIES.mobile} {
-    width: 100%;
+    width: auto;
+    height: auto;
     height: 15%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: end;
+    align-self: start;
+    flex: 1;
   }
 `

@@ -4,8 +4,8 @@ import {
   Price,
   ProductCardContainer,
   LoadingText,
-  ErrorText,
   ProductImage,
+  ImageContainer,
 } from './product-card.styles'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
@@ -24,7 +24,6 @@ type ProductCardProps = {
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch()
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [imageError, setImageError] = useState(false)
 
   const { name, price, imageUrl } = product
   const cartItems = useSelector(selectCartItems)
@@ -39,32 +38,31 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   }
 
   const handleImageError = () => {
-    setImageError(true)
     setImageLoaded(true)
   }
 
   return (
     <ProductCardContainer>
-      {!imageLoaded && <LoadingText>Loading...</LoadingText>}
-      <ProductImage
-        src={imageUrl}
-        alt={name}
-        loading="lazy"
-        onLoad={handleImageLoad}
-        onError={handleImageError}
-        $loaded={imageLoaded}
-      />
-      {imageError && <ErrorText>Image not available</ErrorText>}
+      <ImageContainer>
+        <ProductImage
+          src={imageUrl}
+          alt={name}
+          loading="lazy"
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          $loaded={imageLoaded}
+        />
+        {!imageLoaded && <LoadingText>Loading...</LoadingText>}
+      </ImageContainer>
 
       <Footer>
         <Name>{name}</Name>
         <Price>${price}</Price>
       </Footer>
-      {imageLoaded && (
-        <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>
-          Add To Cart
-        </Button>
-      )}
+
+      <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>
+        Add To Cart
+      </Button>
     </ProductCardContainer>
   )
 }
